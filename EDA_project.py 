@@ -89,7 +89,7 @@ for i, tag in enumerate(tag_list): # count through the Tags column
       column_name = column_name_list[j] # give the column_name for that value
       filter_list.append([tag, column_name, element]) # add the tag, column name and element to the list we intialized
 
-     
+#I am open to comments on my code!
 
 
 
