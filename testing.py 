@@ -1,0 +1,101 @@
+
+
+%%capture
+%pip install pandas matplotlib
+     
+
+
+import pandas as pd
+import numpy as np# basic imports
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+     
+
+df_new = pd.read_csv('fashion.csv')
+
+
+
+lst3 = (set(df_new["BrandName"]))
+
+
+import pickle
+data1 = df_new.set_index('BrandName').unstack().reset_index() #
+data1.columns = ['UserId','BrandName', 'Contempt']
+
+# to display the leevel of contempt shown per brand name 
+sns.set(style="white")
+g = sns.catplot(x='BrandName'
+                   ,y= 'Contempt'
+                   ,hue='UserId'
+                   ,data=data1
+                   ,kind='bar'
+                   ,aspect=6
+                   )
+g.set_xticklabels(rotation=30);
+
+
+
+
+brandS = list(set(fashion.BrandName)) #creating a list of fashion brands by name
+# function "set" returns unique elements in the list
+count_dict = {} #intitializing the count dictionary
+for brand in brandS: #looping through the list of unique brand names
+  df = fashion.loc[fashion["BrandName"] == brand, :] # create a dataframe of the location of each brand name in the BrandName column
+  count_dict[brand] = {} #count the brand in the "brand" list and put it in a dictionary
+  for hashtag in df.Hashtags:
+    if type(hashtag) == str:
+      split_hashtag_list = hashtag.split(", ") #removing whitespace to establish each element
+      for tag in split_hashtag_list: #
+        key_list = count_dict[brand].keys()
+        if tag not in key_list: #checking if a tag is in the keylist
+          count_dict[brand][tag] = 1 #Adding new keys to the keylist
+        else:
+          count_dict[brand][tag] += 1 #Adding 1 to the number of keys counted thus far in the keylist if it has already been added to the keylist
+     
+
+sf_ = pd.DataFrame(count_dict) # turning the dictionary into a dataframe to better manipulate it
+
+sf_new = sf_.rename_axis(['Tags']).reset_index() #Naming the index "Tags" and making it a column
+
+sf_new = pd.DataFrame(sf_new) 
+
+# The resulting dataframe has a lot of NAN vlues, but dropping them would drasticly, negativly affect our data
+# I desided to replace the NaN values with zeros (the brunt of my data cleaning)
+
+
+
+
+lst4 = sf_new.iloc[:,0:] # list the location of the NaN values I need to change
+new1 = lst4.fillna(0) # replaces the NaN values with zero
+# new1.sample(100) will give a sample of the large dataframe to make sure it is working correctly
+     
+"""
+Now that the data is clean and set in a dataframe where we can clearly see the relationships
+I wanted to make a list that better shows the BrandName and Hashtags relationship
+
+"""
+
+
+
+tag_list = new1.Tags # take the Tags column
+filter_list = [] # initialize a list
+column_name_list = new1.columns # take the columns
+
+for i, tag in enumerate(tag_list): # count through the Tags column
+  row = new1.iloc[i] # then look at the value in the corresponding row
+  for j, element in enumerate(row): # loop through the row values
+    if j > 0 and element > 0: # if the row element is greter than zero
+      column_name = column_name_list[j] # give the column_name for that value
+      filter_list.append([tag, column_name, element]) # add the tag, column name and element to the list we intialized
+
+     
+
+
+
+
+
+
+     
+
+     
