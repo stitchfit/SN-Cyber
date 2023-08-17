@@ -1,5 +1,4 @@
 #this line imports fumctionality
-#this is to test 
 from flask import Flask, render_template, request, redirect
 import sqlite3
 
