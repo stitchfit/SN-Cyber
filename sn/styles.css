@@ -1,5 +1,8 @@
 body{
     background-image: url("/sn/sncyber.svg");
+    background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
 }
 
 h1{
@@ -9,6 +12,7 @@ h1{
 .card{
     width: 35em;
     height: 10em;
-    background-color: #62d84eff ;
+    background-color: #81B5A1;
+    
     
 }
