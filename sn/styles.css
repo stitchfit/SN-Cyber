@@ -5,3 +5,10 @@ body{
 h1{
     color: blue;
 }
+
+.card{
+    width: 35em;
+    height: 10em;
+    background-color: #62d84eff ;
+    
+}
